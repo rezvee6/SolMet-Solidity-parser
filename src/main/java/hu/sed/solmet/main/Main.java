@@ -77,7 +77,7 @@ public class Main {
 					CSVPrinter csvPrinter = new CSVPrinter(writer,
 							CSVFormat.DEFAULT.withHeader("SolidityFile", "ETHAddress", "ContractName", "Type", "SLOC", "LLOC", "CLOC",
 									"NF", "WMC", "NL", "NLE", "NUMPAR", "NOS", "DIT", "NOA", "NOD", "CBO", "NA", "NOI",
-									"Avg. McCC", "Avg. NL", "Avg. NLE", "Avg. NUMPAR", "Avg. NOS", "Avg. NOI").withDelimiter(';'));) {
+									"Avg. McCC", "Avg. NL", "Avg. NLE", "Avg. NUMPAR", "Avg. NOS", "Avg. NOI").withDelimiter(','));) {
 
 				for (String solPath : solPaths) {
 					System.out.println("Parsing " + new File(solPath).getPath());
@@ -93,7 +93,7 @@ public class Main {
 					for (ContractDefinitionContext contract : metrics.keySet()) {
 						ArrayList<Object> record = new ArrayList<Object>();
 						record.add(new File(solPath).getName());
-						record.add(new File(solPath).getParentFile().getName().toLowerCase());
+						record.add(new File(solPath).getName());
 						record.add(contract.getChild(1).getText());
 						record.add(contract.getChild(0).getText());
 						record.addAll(Arrays.asList(metrics.get(contract)));
